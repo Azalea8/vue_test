@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中的数据代理</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<!--
+    1.Vue中的数据代理：
+        通过vm对象来代理 _data对象中属性的操作(读/写)。
+    2、Vue中数据代理的好处：
+        更加方便操作 _data中的数据。
+    3.基本原理：
+        通过Object.defineProperty()把 _data对象中的所有属性添加到vm属性上。
+        为每一个添加到vm的属性，都指定一个getter/setter。
+        在getter/setter内部去操作(读/写) _data中的数据。
+
+    Azalea:个人感觉是个语法糖...
+-->
+<div id="root">
+    <h3>{{name}}</h3>
+    <h3>{{address}}</h3>
+</div>
+<script type="text/javascript">
+    let data121 = {
+        name: '尚硅谷',
+        address: '北京',
+    }
+    const vm = new Vue({
+        el: '#root',
+        data: data121, // 配置项，真实的vm对象里的属性是 _data ==> vm._data = data = data121;
+    })
+</script>
+</body>
+</html>
