@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+  <h1>你好，{{name}}</h1>
+</div>
+<script type="text/javascript">
+  let v = new Vue({
+    // el: '#root',
+    data: function (){
+      return {
+        name: '尚硅谷'
+      }
+    }
+  })
+
+  setTimeout(function (){
+    v.$mount('#root')
+  }, 1000);
+</script>
+</body>
+</html>
