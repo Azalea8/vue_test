@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天气案例_监视属性_简写</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <!-- <button @click="isHot = !isHot">切换</button> -->
+    <button @click="change()">切换</button>
+    <br/>
+    <h2>a的值是{{number.a}}</h2>
+    <button @click="number.a++">点我让a++</button>
+    <h2>b的值是{{number.b}}</h2>
+    <button @click="number.b++">点我让b++</button>
+<!--    <button @click="number = {a:666, b:888}">点我直接重写</button>-->
+
+</div>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            isHot: true,
+            number: {
+                a: 1,
+                b: 2,
+            }
+        },
+        computed: {
+            info() {
+                return this.isHot ? '炎热' : '凉爽'
+            }
+        },
+        methods: {
+            change() {
+                this.isHot = !this.isHot
+            }
+        },
+        watch: {
+            // 正常写法
+            // isHot: {
+            //     // immediate: true,
+            //     // deep: true,
+            //     // 当isHot发生改变时调用
+            //     handler(newValue, oldValue) {
+            //         console.log('isHot被修改了', newValue, oldValue)
+            //     }
+            // },
+
+            //简写
+            isHot(newValue, oldValue) {
+                console.log('isHot被修改了', newValue, oldValue)
+            },
+
+
+
+            'number.a' :{
+                handler(newValue, oldValue) {
+                    console.log('a改变了')
+                }
+            },
+            // number: {
+            //     handler() {
+            //         console.log('number改变了')
+            //     }
+            // }
+            number: {
+                deep: true, // 深度检测   Azalea:感觉像Python的深拷贝和浅拷贝
+                handler() {
+                    console.log('number改变了')
+                }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
