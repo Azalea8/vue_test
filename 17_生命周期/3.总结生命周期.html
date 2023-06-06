@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>总结生命周期</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2 :style="{opacity: opacity}">欢迎学习Vue</h2>
+    <button @click="stop">点我停止变换</button>
+</div>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            opacity: 1,
+        },
+        methods: {
+            stop() {
+                // clearInterval(this.timer)
+                this.$destroy()
+            }
+        },
+        // Vue完成模板解析，初始的真实DOM元素放入页面(挂载完毕) 【第一次放入】
+        mounted() {
+            console.log('mounted')
+            this.timer = setInterval(() => {
+                if (this.opacity > 0) {
+                    this.opacity -= 0.01
+                } else {
+                    this.opacity = 1
+                }
+            }, 16)
+        },
+        beforeDestroy() {
+            console.log('定时器关闭')
+            clearInterval(this.timer)
+        }
+    })
+
+    /*setInterval(()=>{
+        if(vm.opacity > 0) {
+            vm.opacity -= 0.01
+        }
+        else {
+            vm.opacity = 1
+        }
+    },16)*/
+</script>
+</body>
+</html>

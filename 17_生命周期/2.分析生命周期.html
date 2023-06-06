@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分析生命周期</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>当前n值是：{{n}}</h2>
+    <button @click="add()">点我n++</button>
+</div>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            n: 1,
+        },
+        methods:{
+            add() {
+                this.n++
+            }
+        },
+        // Vue完成模板解析，初始的真实DOM元素放入页面(挂载完毕) 【第一次放入】
+        beforeCreate() {
+            console.log('beforeCreate')
+            console.log(this)
+        },
+        created() {
+            console.log('created')
+            console.log(this)
+        },
+        beforeMount() {
+            console.log('beforeMount')
+            console.log(this)
+            debugger
+        }
+    })
+
+    /*setInterval(()=>{
+        if(vm.opacity > 0) {
+            vm.opacity -= 0.01
+        }
+        else {
+            vm.opacity = 1
+        }
+    },16)*/
+</script>
+</body>
+</html>
