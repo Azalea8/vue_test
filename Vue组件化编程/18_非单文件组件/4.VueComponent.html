@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueComponent</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+
+</div>
+<script type="text/javascript">
+    const school = Vue.extend({
+
+        template: `
+          <div>
+          <h2>学校名称: {{ name }}</h2>
+          <h2>学校地址: {{ address }}</h2>
+          <button @click="showName()">点我提示</button>
+          </div>
+        `,
+        data() {
+            return {
+                name: '尚硅谷',
+                address: '北京',
+            }
+        },
+        methods: {
+            showName() {
+                alert(this.name)
+            }
+        }
+    })
+
+    new Vue({
+        el: '#root',
+        template: `<school></school>`,
+        components :{
+            school,
+        }
+    })
+</script>
+</body>
+</html>

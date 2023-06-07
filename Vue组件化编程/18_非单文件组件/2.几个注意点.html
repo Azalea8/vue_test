@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>几个注意点</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>{{msg}}</h2>
+    <school></school>
+</div>
+<script type="text/javascript">
+    const school = Vue.extend({
+        name: 'atguigu', // 开发者工具显示的名字
+        template: `
+            <div>
+                <h2>学校名称: {{name}}</h2>
+                <h2>学校地址: {{address}}</h2>
+            </div>
+        `,
+        data() {
+            return {
+                name: '尚硅谷',
+                address: '北京',
+            }
+        }
+    })
+
+    new Vue({
+        el: '#root',
+        data: {
+            msg: '欢迎学习Vue'
+        },
+        components: {
+            school,
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本使用</title>
+    <script src="/js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>{{msg}}</h2>
+    <hello></hello>
+    <school></school>
+    <hr>
+    <student></student>
+    <student></student>
+</div>
+<script type="text/javascript">
+    const school = Vue.extend({
+        // el: '#root' 【不能写el】
+        template: `
+          <div>
+              <h2>学校名称: {{ schoolName }}</h2>
+              <h2>学校地址: {{ address }}</h2>
+              <button @click="showName">点我提示信息</button>
+          </div>
+        `,
+        data() {
+            return {
+                schoolName: '尚硅谷',
+                address: '北京',
+            }
+        },
+        methods: {
+            showName() {
+                alert(this.schoolName)
+            }
+        }
+    })
+
+    const student = Vue.extend({
+        // el: '#root' 【不能写el】
+        template: `
+          <div>
+              <h2>学生名称: {{studentName}}</h2>
+              <h2>学生地址: {{age}}</h2>
+          </div>
+        `,
+        data() {
+            return {
+                studentName: 'Jack',
+                age: 18,
+            }
+        }
+    })
+
+    const hello = Vue.extend({
+        template:`
+            <div>
+                <h2>你好啊{{name}}</h2>
+            </div>
+        `,
+        data() {
+            return {
+                name: 'Tom',
+            }
+        }
+    })
+    Vue.component('hello', hello)
+
+    new Vue({
+        el: '#root',
+        data: {
+            msg: '测试',
+        },
+        // 注册组件
+        components: {
+            school: school,
+            student: student,
+        }
+    })
+</script>
+</body>
+</html>
