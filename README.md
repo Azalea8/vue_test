@@ -1,3 +1,3 @@
-# vue_test
+# vue_t
 
-学习Vue中
+Vue2核心基础，并没有脚手架，采用Javascript编写
